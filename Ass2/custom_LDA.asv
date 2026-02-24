@@ -24,7 +24,7 @@ c1_train_size = sum(index_class_one);
 c2_train_size = sum(index_class_two);
 train_size = c1_train_size + c2_train_size;
 
-% Compute mean and common covariance
+% Compute mean and common cavariance
 % 2x1 mean per feature
 mean_class_one = mean(X_train_c1, 2); 
 mean_class_two = mean(X_train_c2, 2);
