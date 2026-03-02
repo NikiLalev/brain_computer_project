@@ -8,7 +8,7 @@ function [accuracy_train, accuracy_test, w, b, line_coords] = custom_LDA(X_train
 % Output
 %  accuracy_train: 0-1
 %  accuracy_test: 0-1
-%  w: projection vector
+%  w: prjection vector
 %  b: bias
 %  line_coords: struct with points that can be used for plotting the
 %               decision line
@@ -24,7 +24,7 @@ c1_train_size = sum(index_class_one);
 c2_train_size = sum(index_class_two);
 train_size = c1_train_size + c2_train_size;
 
-% Compute mean and common covariance
+% Compute mean and common cavariance
 % 2x1 mean per feature
 mean_class_one = mean(X_train_c1, 2); 
 mean_class_two = mean(X_train_c2, 2);
@@ -36,7 +36,7 @@ cov_class_two = cov(X_train_c2(1,:), X_train_c2(2,:));
 combined_cov = ((c1_train_size - 1) * cov_class_one + (c2_train_size - 1) * cov_class_two) / (train_size - 2); 
 
 % Compute projection vector
-w = (combined_cov^-1) * (mean_class_one - mean_class_two);
+w = (combined_cov) \ (mean_class_one - mean_class_two);
 
 % Compute bias
 p1 = c1_train_size / (train_size);
